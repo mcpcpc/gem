@@ -1,0 +1,3 @@
+# mcpcpc
+
+My name is Michael Czigler and sometimes I program in C. This site is intended to be a “buffer”, a temporary medium for sharing my thoughts and ideas, with the hope that someone may one day finds these musings helpful.
