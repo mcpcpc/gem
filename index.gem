@@ -23,6 +23,13 @@
 
 My name is Michael Czigler and sometimes I program in C. This gemlog is intended to be a buffer, a temporary medium for sharing my thoughts and ideas, with the hope that someone may one day finds these musings helpful.
 
+## Projects
+
+All source files for my projects are hosted on GitHub.
+
+=> https://github.com/mcpcpc/xwm xwm ~ XCB floating window manager
+=> https://github.com/mcpcpc/kirc kirc ~ POSIX C99 IRC client
+
 ## Gemlog
 
 => /gemlog/2021-03-05-9front-gemini-server.gem 2021-03-05 9front Gemini Server Setup
