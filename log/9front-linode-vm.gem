@@ -30,8 +30,6 @@ With the VM powered off, start Rescue mode.
 
 Open a new LISH console window. Once in Rescue mode, download your installation media and copy it to your boot disk. Refer to one of the 9front mirrors for the latest image.
 
-=> http://9front.org/iso/
-
 ```
 wget http://9front.org/iso/9front-8013.d9e940a768d1.amd64.iso.gz -q -O -| funzip | dd of=/dev/sda
 ```
@@ -59,7 +57,7 @@ There are *many* resources at your disposal if you are looking to learn more abo
 => https://sdf.org/?tutorials/VPS_Plan9 Plan 9 on SDF VPS
 => https://luksamuk.codes/posts/plan9-mail.html Reading E-mail from Gmail on Plan 9 from Bell Labs
 => https://royniang.com/cpu_auth.html Plan 9 Remote CPU
-=> kttps://github.com/henesy/awesome-plan9 Awesome Plan9
+=> https://github.com/henesy/awesome-plan9 Awesome Plan9
 => http://mirtchovski.com/lanlp9/tips.html Tips
 => https://b1nary.tk/pub/9front-rio-wallpaper/ 9front rio Wallpaper
 => https://9p.io/wiki/plan9/Unix_to_Plan_9_command_translation/index.html Unix to Plan9 Command Translation
