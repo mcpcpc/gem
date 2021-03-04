@@ -1,10 +1,10 @@
 # 9front Gemini Server Setup
 
-In comparison to other server installation guides for Linux, getting a Gemini server up and running in 9front is pretty straightforward.
+In comparison to Linux installation guides, getting a Gemini server up and running in 9front is pretty straightforward.
 
 ## Requirements
 
-Before we can start the server, I would recommend have git9 installed.
+First, I would recommend installing git9.
 
 ```
 % cd /tmp
@@ -14,7 +14,7 @@ Before we can start the server, I would recommend have git9 installed.
 % mk install
 ```
 
-Once installed, we can install the Gemini server rc script.
+We now need to install the Gemini server rc script.
 
 ```
 % webfs
@@ -25,7 +25,7 @@ Once installed, we can install the Gemini server rc script.
 
 ## Setup
 
-Generate the required TLS key and certificates. Note that you should replace "your.domain.here" with your relevant domain name.
+Generate the required TLS key and certificate. Note that you should replace "your.domain.here" with the relevant domain name.
 
 ```
 % mkdir -p /lib/ssl
@@ -33,7 +33,7 @@ Generate the required TLS key and certificates. Note that you should replace "yo
 % auth/rsa2x509 'C=US CN=your.domain.here' gem.key | auth/pemencode CERTIFICATE >/lib/ssl/gem.cert
 ```
 
-Add they generated key in the previous step to factotum.
+Add the generated key in the previous step to factotum.
 
 ```
 % cat /lib/ssl/gem.key >> /mnt/factotum/ctl
@@ -52,7 +52,9 @@ By default, all capsule files reside in /lib/gem/.  A simple gemlog file structu
 │  ├─ YYYY-MM-DD-article3-title.gem
 ```
 
-## Start The Server
+## Going Live
+
+Start the server using the following command.
 
 ```
 % aux/listen1 tcp!*!1965 tlssrv -c /lib/ssl/gem.cert /rc/bin/rc-gemd/rc-gemd
