@@ -1,4 +1,4 @@
-# 9front Remote CPU
+# 9front Remote CPU Setup
 
 How to connect to your plan9 operating system on a Linode virtual machine
 using a cpu, auth and fs server.
