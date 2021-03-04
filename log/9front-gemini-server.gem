@@ -1,4 +1,74 @@
-# 9front Gemini Server
+# 9front Gemini Server Setup
 
-In comparison to other server installation guides for Linux, getting a Gemini server up and running is pretty straightforward.
+In comparison to other server installation guides for Linux, getting a Gemini server up and running in 9front is pretty straightforward.
 
+## Requirements
+
+Before we can start the server, I would recommend have git9 installed.
+
+```
+% cd /tmp
+% hget https://orib.dev/git/git9/HEAD/snap.tar.gz | tar xvz
+% cd git9
+% mk all
+% mk install
+```
+
+Once installed, we can install the Gemini server rc script.
+
+```
+% webfs
+% mkdir /rc/bin/rc-gemd
+% cd /rc/bin/rc-gemd
+% git/clone https://git.sr.ht/~moody/rc-gemd
+```
+
+## Setup
+
+Generate the required TLS key and certificates. Note that you should replace "your.domain.here" with your relevant domain name.
+
+```
+% mkdir -p /lib/ssl
+% auth/rsagen -t 'service=tls owner=*' >/lib/ssl/gem.key
+% auth/rsa2x509 'C=US CN=your.domain.here' gem.key | auth/pemencode CERTIFICATE >/lib/ssl/gem.cert
+```
+
+Add they generated key in the previous step to factotum.
+
+```
+% cat /lib/ssl/gem.key >> /mnt/factotum/ctl
+```
+
+## Create The Gemini Capsule Files
+
+By default, all capsule files reside in /lib/gem/.  A simple server file structure might look something like the following.
+
+```
+/lib/gem/
+├─ index.gem
+├─ log/
+│  ├─ article1.gem
+│  ├─ article2.gem
+│  ├─ article3.gem
+```
+
+## Start The Server
+
+```
+% aux/listen1 tcp!*!1965 tlssrv -c /lib/ssl/gem.cert /rc/bin/rc-gemd/rc-gemd
+```
+
+We add this command to an rc script that can be run at startup.
+
+```
+% cd $home/bin/rc
+% sam -d gemstart
+1
+c
+#!/bin/rc
+aux/listen1 tcp!*!1965 tlssrv -c /lib/ssl/gem.cert /rc/bin/rc-gemd/rc-gemd
+.
+w
+q
+% chmod +x gemstart
+```
