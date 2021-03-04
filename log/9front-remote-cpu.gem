@@ -17,8 +17,7 @@ For the purpose of this installation, I will assume that 9front was installed
 with the device drive name of `sd00`, sysname of `cirno` and the `hjfs`
 filesystem.
 
-Step 1: Gather System Information
----------------------------------
+## Step 1: Gather System Information
 
 Invoke the DHCPCD server. Print the configured network database information, 
 noting the values for `ip=`, `ipmask=` and `ipgw=` (these will be used
