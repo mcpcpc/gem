@@ -10,17 +10,13 @@ Click the "Storage" tab and press "Add a Disk". Specify a Label name, raw format
 
 Click the "Configurations" tab and press "Add a Configuration". Specify a Label name and the following recommended parameters and press *Submit*.
 
-```
-|parameter              |value                                              |
-|-----------------------|---------------------------------------------------|
-|VM Mode                |Paravirtualization                                 |
-|Boot Settings          |Direct Disk                                        |
-|Run Level              |Run Default Level                                  |
-|Memory Limit           |Do not set any limits on memory usage              |
-|Block Device Assignment|"/dev/sda" matches the *Storage* Label name.       |
-|Root Device            |/dev/sda                                           |
-|Filesystem/Boot Helpers|All options disabled                               |
-```
+* VM Mode: Paravirtualization
+* Boot Settings: Direct Disk
+* Run Level: Run Default Level
+* Memory Limit: Do not set any limits on memory usage 
+* Block Device Assignment: "/dev/sda" matches the *Storage* Label name
+* Root Device: /dev/sda 
+* Filesystem/Boot Helpers: All options disabled 
 
 Click the *Settings* tab, and disable the Shutdown Watchdog.
 
