@@ -10,7 +10,7 @@
      └▌           ▄    ░█╬▌      "Minimum viable software
       ▐           ▀  ,wg░╟▌       solutions and ideas."
        ▓            ▓▓██▌▓
-       ▐░           ░▓µ╢▒▓                         -mcpcpc
+       ▐░           ░▓µ╢▒▓                        -mcpcpc
        ▐░            '░░▒▌
        ▓               ░▒▌
       ▄█░              ░▓
@@ -19,7 +19,7 @@
                 -╙╚╙ⁿ╙
 ```
 
-# Hello
+# Hello, 
 
 My name is Michael Czigler and sometimes I program in C. This gemlog is intended to be a buffer, a temporary medium for sharing my thoughts and ideas, with the hope that someone may one day finds these musings helpful.
 
@@ -30,7 +30,7 @@ All source files for my projects are hosted on GitHub.
 => https://github.com/mcpcpc/xwm xwm ~ XCB floating window manager
 => https://github.com/mcpcpc/kirc kirc ~ POSIX C99 IRC client
 
-## Gemlog
+## Capsule Content
 
 => /gemlog/2021-03-05-9front-gemini-server.gem 2021-03-05 9front Gemini Server Setup
 => /gemlog/2021-03-04-9front-remote-cpu.gem 2021-03-04 9front Remote CPU Setup
