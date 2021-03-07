@@ -1,6 +1,6 @@
 # 9front Linode VM Setup
 
-Installing and configuring 9front operating system on Linode virtual machine.
+The following are steps for installing and configuring the 9front operating system on a Linode virtual machine.
 
 ## Preparing the Linode VM
 
