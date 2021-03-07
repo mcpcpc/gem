@@ -56,6 +56,13 @@ By default, all capsule files reside in /lib/gem/.  A simple gemlog file structu
 └── index.gem
 ```
 
+I find it helpful to have all of my capsule files one one git repository called "gem".
+
+```
+% cd /lib
+% git/clone http://github.com/[USERNAME]/gem
+```
+
 ## Going Live
 
 Start the server using the following command.
