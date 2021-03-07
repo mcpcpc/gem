@@ -1,9 +1,5 @@
 # 9front Remote CPU Setup
 
-How to connect to your plan9 operating system on a Linode virtual machine using a cpu, auth and fs server.
-
-## Overview
-
 If you were following along with my previous article, then you probably have a working installation of 9front OS on a Linode virtual machine that you can access through a LISH pseudoterminal. In the following article, I will attempt to walk through the process of creating a cpu, auth and fs server, which will allow you to spawn a virtual desktop from any non-9front OS using drawterm.
 
 For the purpose of this installation, I will assume that 9front was installed with the device drive name of `sd00`, sysname of `cirno` and the `hjfs` filesystem.
