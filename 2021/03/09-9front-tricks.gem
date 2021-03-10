@@ -13,14 +13,14 @@ ctrl+"	Repeat last command
 
 ## Raspberry Pi Specific
 
-Mount 9fat (from a remote cpu):
+Mount 9fat (from a remote cpu).
 
 ```
 bind -b '#S' /dev
 9fs 9fat
 ```
  
-Send file to pastebin
+Send file to pastebin.
 
 ```
 cat file | webpaste
@@ -28,13 +28,13 @@ cat file | webpaste
 
 ## Ricing
 
-Convert jpg to plan9 format
+Convert jpg to plan9 format.
 
 ```
 jpg -9t wall.jpg > wall
 ```
 
-Add background image support
+Add background image support.
 
 ```
 cd /sys/src/cmd/rio/
@@ -44,7 +44,7 @@ mk install
 mk clean
 ```
 
-Using the patched data.c for background images:
+Using the patched data.c for background images.
 
 ```
 # remember to convert the *.jpg to plan9 format
@@ -52,7 +52,7 @@ cd /path/to/wall
 cat wall | rio -i riostart
 ```
 
-Install hack fonts:
+Install hack fonts.
 
 ```
 hget https://github.com/sirnewton01/plan9-font-hack/releases/download/2-020/hack-font.zip > /tmp/hack-font.zip
@@ -64,4 +64,230 @@ hget http://9front.org/extra/font.hack.tgz > /tmp/font.hack.tgz
 cd /lib/font/bit
 gunzip < /tmp/font.hack.tgz | tar xv
 rm /tmp/font.hack.tgz
+```
+
+## Command Translation
+
+The following list of some UNIX commands, files, and shell terminology, which you can emulate in a Plan 9 system:
+
+```
+UNIX                       Plan 9 from Bell Labs
+
+`command`                  `{ command }
+
+.profile                   $home/lib/profile
+
+^C (Ctrl+C)                DEL key -- doesn't work without rio(4) though.
+
+~                          $home
+                           /usr/$user/
+
+~username                  /usr/username
+
+"$@"                       $*
+
+1>&2                       >[2=1]
+
+apropos                    lookman(1) 
+
+at specific-time           while (! ~ (`{ date }) (specific-time)); commands
+
+cc                         one of ones in 0c(1) followed by the same of 0l(1)
+                           pcc(1) for Standard C/POSIX programs
+
+cp -r /foo/ /bar/          mkdir /bar/foo/ && dircp /foo/ /bar/foo/
+
+crontab -e                 sam /cron/$user/cron
+
+curl http://foo/bar
+wget http://foo/bar        hget http://foo/bar > bar
+                           (progress bar, -t for ascii) hget -v -o bar http://foo/bar |[2] aux/statusbar [-t] 'downloading'
+
+cut                        awk -F ...
+
+apt-get dist-upgrade
+rpm -Ua
+yum -c update              /usr/glenda/bin/rc/pull
+
+apt-get install
+rpm -i package
+yum -c install package     9fs sources ; cd /n/sources/
+                           /n/sources/contrib/fgb/root/rc/bin/contrib/install fgb/contrib ; contrib/install $who/$what
+
+df                         disk/kfscmd check 
+                           echo fsys all df | con -l /srv/fscons
+                           df in fossilcons(8)
+
+ee
+emacs
+jim
+joe
+nano
+pico
+vi
+xedit                      sam
+                           acme
+
+expr                       hoc -e
+
+find                       du -a | grep pattern 
+                           grep pattern `{du -a root} 
+   -name                   du -a root | grep name 
+   pattern in a file       grep -n pattern `{du -a root | awk '{print $2}'}
+   -exec cp '{}' x ';'     cp `{ du -a | grep pattern } x
+
+fsck                       echo fsys all check fix | con -l /srv/fscons
+                           if running venti, for a thorough fix: echo fsys all check fix venti snapshot | con -l /srv/fscons
+
+ftp                        ftpfs host.domain (Remote files apear in /n/ftp).
+
+ftpd                       aux/listen ftp
+
+getopt                     getflags(8)
+
+groff -l                   troff | lp
+
+grops                      dpost - see troff(1)
+
+head                       sed 10q
+
+hwclock                    cat '#r/rtc'
+                           aux/timesync
+
+id                         echo $user 
+                           cat /dev/user 
+                           grep `{cat /dev/user} /adm/users 
+                           grep $user /adm/users
+
+iostat                     iostats(4)
+
+ifconfig(IP address)       cat /net/ndb
+
+ifconfig                   ip/ipconfig ether /net/ether0 add 192.168.1.32
+                           ip/ipconfig # let dhcp do it
+
+kill pid                   stop processname | rc
+                           echo stop > /proc/pid/ctl
+                           (in both cases, switch stop with start to get it back)
+
+kill -9 pid
+kill -KILL pid             slay processname | rc
+                           echo kill > /proc/pid/ctl
+
+ld                         one of the ones in 0l(1)
+
+ls                         lc -F
+
+lspci                      pci -v
+
+make                       mk (not exactly the same)
+                           if necessary, use make in ape/psh
+
+man -k                     lookman(1)
+
+less
+more                       p
+
+mount [-p flag]            bind(1) 
+                           unmount(1) 
+                           9fs(1) 
+                           srv(1) 
+                           import(4)
+                           exportfs(4) 
+   -p                      ns(1)
+
+mount /dev/fd0 /mnt        a: ; cd /n/a:
+
+mount /dev/acd0 /mnt       9660srv
+                           mkdir /n/9660
+                           mount /srv/9660 /n/9660 /dev/sdD0/data
+
+netcat -l                  aux/listen1 -t tcp!*!$port command
+
+netstat [-r flag]          netstat(1) 
+   -r                      cat /net/iproute
+
+nfsstat                    iostats(4)
+
+nslookup                   ndb/dnsquery
+
+passwd                     auth/changeuser username (first time)
+                           passwd (subsequent times)
+
+paste [FILE] ...           pr -m [FILE] ...
+
+PATH=$PATH:...             bind -a directory /bin
+
+ping                       ip/ping
+
+pkginfo                    wrap(8)
+
+reboot                     fshalt -r (note that there is a reboot command, but it doesn't call fshalt)
+
+rmdir                      rm(1)
+                           With contents inside: rm -r dir
+
+sh                         rc(1)
+                           if necessary, ape/psh
+
+shutdown                   fshalt(8)
+                           echo reboot > /dev/reboot
+                           echo panic > /dev/reboot
+
+snoop                      snoopy(8)
+
+source                     .
+
+startx
+launch (Andrew Project)
+mux (Blit's wm)            rio (replaces 8½ and help)
+
+tar xzf file.tgz           tar xf file.tgz
+
+tcpdump                    snoopy(8)
+
+traceroute                 ip/traceroute
+
+tree                       du $* | awk '{print $2}' | sort | sed 's/[^\/]+\//	/g'
+
+ufs{dump|restore}          yesterday(1) 
+                           history(1) 
+                           fs(4)
+
+vigr
+vipw                       [Adding a new user]
+
+vlock                      http://mirtchovski.com/lanlp9/rlock
+                           (specify password at invocation)
+
+vmstat                     stats(1) 
+                           cat /dev/sysstat 
+                           cat /dev/swap
+
+which                      whatis
+
+xbiff                      faces
+
+xclock                     clock
+                           games/catclock
+                           faces
+
+xditview                   troff | page
+                           troff | proof
+
+xload                      stats -l
+
+xlock                      /n/sources/contrib/steve/conslock
+                           (authenticates against authentication server)
+
+xlogo                      window 'hget http://plan9.bell-labs.com/plan9/img/plan9bunnysmblack.jpg | page'
+
+xman cat                   man -t cat | page
+
+xv file.jpg                page file.jpg
+
+xwininfo                   winwatch
+
+yes                        while() { echo y }
+   yes arg                 while() { echo arg }
 ```
