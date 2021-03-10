@@ -1,6 +1,6 @@
-# 9front Tips and Tricks
+# 9front/plan9 Tips and Tricks
 
-The following is a collection of useful snippets and commands that I have discovered on my slow transition from using Linux to 9plan OS.
+The following is a collection of useful snippets and commands that I have discovered on my slow transition from using Linux to 9plan OS
 
 ## Shortcuts
 
@@ -69,6 +69,8 @@ rm /tmp/font.hack.tgz
 ## Command Translation
 
 The following list of some UNIX commands, files, and shell terminology, which you can emulate in a Plan 9 system:
+
+=> http://9p.io/wiki/plan9/UNIX_to_Plan_9_command_translation/
 
 ```
 UNIX                       Plan 9 from Bell Labs
