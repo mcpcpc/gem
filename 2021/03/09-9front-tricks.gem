@@ -1,0 +1,67 @@
+# 9front Tips and Tricks
+
+The following is a collection of useful snippets and commands that I have discovered on my slow transition from using Linux to 9plan OS.
+
+## Shortcuts
+
+```
+ctrl+f	Auto-complete filename
+ctrl+a	Go to beginning of line
+ctrl+e	Go to end of line
+ctrl+"	Repeat last command
+```
+
+## Raspberry Pi Specific
+
+Mount 9fat (from a remote cpu):
+
+```
+bind -b '#S' /dev
+9fs 9fat
+```
+ 
+Send file to pastebin
+
+```
+cat file | webpaste
+```
+
+## Ricing
+
+Convert jpg to plan9 format
+
+```
+jpg -9t wall.jpg > wall
+```
+
+Add background image support
+
+```
+cd /sys/src/cmd/rio/
+hget https://raw.githubusercontent.com/mcpcpc/9front-rpi4-scripts/main/data.c.patch
+patch data.c.patch
+mk install
+mk clean
+```
+
+Using the patched data.c for background images:
+
+```
+# remember to convert the *.jpg to plan9 format
+cd /path/to/wall
+cat wall | rio -i riostart
+```
+
+Install hack fonts:
+
+```
+hget https://github.com/sirnewton01/plan9-font-hack/releases/download/2-020/hack-font.zip > /tmp/hack-font.zip
+cd /lib/font/bit
+unzip < /tmp/hack-font.zip
+rm /tmp/hack-font.zip
+	
+hget http://9front.org/extra/font.hack.tgz > /tmp/font.hack.tgz
+cd /lib/font/bit
+gunzip < /tmp/font.hack.tgz | tar xv
+rm /tmp/font.hack.tgz
+```
