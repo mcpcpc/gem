@@ -17,7 +17,7 @@ Note that this list does not take into account multi-channel support or more adv
 
 ## Wrapping It Up
 
-I will save you the headaches and research and just share the wrapper script I have created and affectionately named `irc2`.
+I will save you the headaches and research and just share the wrapper script I have created and affectionately named "irc2".
 
 ```
 #!/bin/sh
