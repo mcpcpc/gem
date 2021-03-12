@@ -1,20 +1,20 @@
 #9front and Task Automation
 
-In my previous article pertaining to Gemini server hosting on a 9front operating system, I  suggested using a git repository to maintain capsule files. In general, this solution works well but may not be convenient if you are used to editing "on the go". For example, I often find myself switching between devices and using multiple different git interfaces throughout the day. This can be come inconvenient if you need to frquently ssh+drawterm connect/disconnect to push or pull changes on the remote hosting server.
+In my previous article pertaining to Gemini server hosting, I suggested using a git repository to maintain capsule files. In general, this solution works well but may not be convenient if you are used to editing "on the go". For example, I often find myself switching between devices and using multiple different git interfaces throughout the day. This can be combersome if you need to frequently connect/disconnect (via ssh and drawterm) to push or pull changes on the remote hosting server.
 
-To simplify this process a bit, I recently set up a cron task to automate some activities on my remote hosting server. The process of doing so is fairly straightforward and would recommend taking a look at the plan9 man pages for the cron service.
+To simplify this process a bit, I recently started using cron to automate some activities on my remote hosting server. The process of doing so is fairly straightforward and but I would recommend taking a look at the plan9 man pages first.
 
 => http://man.cat-v.org/plan_9/8/cron
 
 ## Creating a task
 
-If you have never started a cron task on your remote hosting server or for your current user, begin by issueing the following command:
+If you have never used cron before on your remote hosting server, begin by issuing the following command:
 
 ```
 % auth/cron -c
 ```
 
-This should create a blank file in /cron/[glenda]/cron file. Once created, we can use the sam editor to add our first cron task, which will run a script, gempull, every hour on the hour.
+This should create a blank cron file in in /cron/[glenda]/. Once created, we can use the sam editor to add our first cron task (which will run a script, gempull, every hour on the hour).
 
 ```
 % sam -d /cron/[glenda]/cron
@@ -25,7 +25,6 @@ c
 w
 q
 ```
-
 
 Now we need to create the gempull script.
 
