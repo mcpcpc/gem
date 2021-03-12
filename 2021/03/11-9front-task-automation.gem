@@ -38,12 +38,6 @@ git/pull
 .
 w
 q
-```
-
-The last step is to start the cron service. I would recommend doing this from the host server TTY or a graphical pseudoterminal (e.g. GLISH).
-
-
-```
 % auth/cron
 ```
 
