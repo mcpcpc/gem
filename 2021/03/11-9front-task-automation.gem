@@ -14,7 +14,7 @@ If you have never used cron before on your remote hosting server, begin by issui
 % auth/cron -c
 ```
 
-This should create a blank cron file in /cron/[glenda]/. Once created, we can use the sam editor to add our first cron task (which will run a script, gempull, every hour on the hour).
+This should create a blank cron file in /cron/[glenda]/. Once created, we can use the sam editor to add our first cron task (which will run a script called "gempull" every hour on the hour).
 
 ```
 % sam -d /cron/[glenda]/cron
