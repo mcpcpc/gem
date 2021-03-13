@@ -22,43 +22,43 @@ I will save you the headaches and research and just share the wrapper script I h
 ```
 #!/bin/sh
 #
-# Usage: $0 [<host>] [<port>] [<nick>] [<username>] [<realname>]
+# Usage: $0 [<server>] [<port>] [<nick>] [<username>] [<realname>]
 
-trap 'rm -rf "$tmpfile"' EXIT HUP INT
-tmpfile="/tmp/$0.$$"; touch $tmpfile
-In () {
-	printf 'WAIT 1\n\rNICK %s\r\n' "${nick:=${3:-$(id -un)}}"
-	printf 'USER %s localhost * : %s\r\n' "${3:-$nick}" "${5:-$nick}"
-	tail -f "$tmpfile" & while IFS= read -r cmd ; do
-		case "$cmd" in
-			/join*)
-				chan="${cmd#* }"
-				printf '%s\r\n' "${cmd#/}"
-			;;
-			/*)
-				printf '%s\r\n' "${cmd#/}"
-			;;
-			*)
-				printf 'PRIVMSG %s :%s\r\n' "$chan" "$cmd"
-			;;
-		esac
-	done
-}
-	
-Out () {
-	while IFS= read -r resp ; do
-		case "$resp" in
-			"PING "*)
-				echo "PONG ${resp#* }" >> "$tmpfile"
-			;;
-			*)
-				printf "$resp\n"
-			;;
-		esac
-	done
+[ -z “$NCIRC” ] && {
+	fd=“/tmp/.irc2”; rm -f “$fd”; mkfifo “$fd”
+	nc “${1:-irc.freenode.org}” “${2:-6667}” <“$fd” | \
+		NCIRC=1 exec “$0” “$@“ >”$fd”
 }
 
-In "$@" | nc "${1:-irc.freenode.net}" "${2:-6667}" | Out
+trap ‘kill 0’ EXIT HUP INT
+printf ‘NICK %s\r\n’ “${nick:=${3:-$(id -un)}}”
+printf ‘USER %s localhost * :%s\r\n’ “${4:-$nick}” “${5:-$nick}”
+
+while IFS= read -r cmd; do
+	case $cmd in
+		/join*)
+			curr=${cmd#* }
+			printf ‘%s\r\n’ “${cmd#/}”
+		;;
+		/*)
+			printf ‘%s\r\n’ “${cmd#/}”
+		;;
+		*)
+			printf ‘PRIVMSG %s :%s\r\n’ “$curr” “$cmd”
+		;;
+	esac
+done </dev/tty &
+
+while IFS= read -r line; do
+	case $line in
+		‘PING ‘*)
+			printf ‘PONG %s\r\n’ “${line#* }”
+		;;
+		*)
+			printf ‘%s\n’ “$line” >/dev/tty
+		;;
+	esac
+done
 ```
 
 In ~39 cloc, we have a script that checks all of the boxes on my list and works on 99% of POSIX-compliant shells.  Nifty, eh?
