@@ -74,4 +74,4 @@ script -a -c irc2 chat_log.txt
 ## Acknowledgements
 
 
-Special thanks to aarng (for showing we the ways of `netcat -e`) and all the users on the *#kisslinux* IRC channel for the continuous feedback and suggestions.
+Special thanks to aarng (for showing me the ways of `netcat -e`) and all the users on the *#kisslinux* IRC channel for the continuous feedback and suggestions.
