@@ -1,8 +1,8 @@
 #9front and Task Automation
 
-In my previous article pertaining to Gemini server hosting, I suggested using a git repository to maintain capsule files. In general, this solution works well but may not be convenient if you are used to editing "on the go". For example, I often find myself switching between devices and using multiple different git interfaces throughout the day. This can be combersome if you need to frequently connect/disconnect (via ssh and drawterm) to push or pull changes on the remote hosting server.
+In my previous article pertaining to Gemini server hosting, I suggested using a git repository to maintain capsule files. In general, this solution works well but may not be convenient if you are used to editing "on the go". For example, I often find myself switching between devices and using multiple different git interfaces throughout the day. This can be cumbersome if you need to frequently connect/disconnect (via ssh and drawterm) to push or pull changes on the remote hosting server.
 
-To simplify this process a bit, I recently started using cron to automate some activities on my remote hosting server. The process of doing so is fairly straightforward and but I would recommend taking a look at the plan9 man pages first.
+To simplify this process a bit, I recently started using cron to automate some activities on my remote hosting server. The process of creating a cron task is fairly straightforward, but I would recommend taking a look at the plan9 man pages first.
 
 => http://man.cat-v.org/plan_9/8/cron
 
@@ -14,7 +14,7 @@ If you have never used cron before on your remote hosting server, begin by issui
 % auth/cron -c
 ```
 
-This should create a blank cron file in in /cron/[glenda]/. Once created, we can use the sam editor to add our first cron task (which will run a script, gempull, every hour on the hour).
+This should create a blank cron file in /cron/[glenda]/. Once created, we can use the sam editor to add our first cron task (which will run a script, gempull, every hour on the hour).
 
 ```
 % sam -d /cron/[glenda]/cron
@@ -26,7 +26,7 @@ w
 q
 ```
 
-Now we need to create the gempull script.
+Now we need to create the gempull script. 
 
 ```
 % sam -d %home/bin/rc/gempull
