@@ -1,4 +1,4 @@
-#9front and Task Automation
+# 9front and Task Automation
 
 In my previous article pertaining to Gemini server hosting, I suggested using a git repository to maintain capsule files. In general, this solution works well but may not be convenient if you are used to editing "on the go". For example, I often find myself switching between devices and using multiple different git interfaces throughout the day. This can be cumbersome if you need to frequently connect/disconnect (via ssh and drawterm) to push or pull changes on the remote hosting server.
 

@@ -61,7 +61,7 @@ while IFS= read -r line; do
 done
 ```
 
-In ~39 cloc, we have a script that checks all of the boxes on my list and works on 99% of POSIX-compliant shells.  Nifty, eh?
+In ~39 cloc, we have a script that checks all of the boxes on my list and works on 99% of POSIX-compliant shells. as Nifty, eh?
 
 ## Chat History Logging
 
